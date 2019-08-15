@@ -1,0 +1,11 @@
+{
+  "macros": [
+    "MBEDTLS_SHA1_C",
+    "NO_LOGGING"
+  ],
+  "target_overrides": {
+    "*": {
+      "platform.stdio-baud-rate": 115200
+    }
+  }
+}
