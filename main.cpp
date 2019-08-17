@@ -5,7 +5,6 @@
 
 #define DLM	"\r\n"
 
-#define IOTHUB_DEVICE_CONNECTION_STRING	""
 #define LOOP_INTERVAL					(10)
 
 NetworkInterface* _defaultSystemNetwork;
@@ -17,12 +16,14 @@ int main()
 	printf("Initialize the network adapter." DLM);
 
 	NetworkInterface* net;
-#if defined TARGET_NUCLEO_F746ZG
+#if defined TARGET_NUCLEO_F746ZG || defined TARGET_K64F
 	EthernetInterface eth;
 	printf("Connect ethernet." DLM);
 	nsapi_error_t status = eth.connect();
 	if (status != NSAPI_ERROR_OK) abort();
 	net = &eth;
+#else
+#error This target board not supported.
 #endif
 
 	printf(" MAC    : %s" DLM, net->get_mac_address());
@@ -40,7 +41,7 @@ int main()
 	printf("Setup AzureDeviceClient." DLM);
 	_defaultSystemNetwork = net;
 	MyDevice device;
-	if (!device.ConnectIoTHub(IOTHUB_DEVICE_CONNECTION_STRING)) abort();
+	if (!device.ConnectIoTHub(MBED_CONF_APP_AZURE_IOTHUB_DEVICE_CONNECTION_STRING)) abort();
 
 	while (true)
 	{

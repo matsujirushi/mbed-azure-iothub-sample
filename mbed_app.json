@@ -1,4 +1,13 @@
 {
+  "config": {
+    "AZURE_IOTHUB_DEVICE_CONNECTION_STRING": "\"\"",
+    "LED_PIN": {
+      "required": true
+    },
+    "BUTTON_PIN": {
+      "required": true
+    }
+  },
   "macros": [
     "MBEDTLS_SHA1_C",
     "NO_LOGGING"
@@ -6,6 +15,14 @@
   "target_overrides": {
     "*": {
       "platform.stdio-baud-rate": 115200
+    },
+    "NUCLEO-F746ZG": {
+      "LED_PIN": "LED1",
+      "BUTTON_PIN": "BUTTON1"
+    },
+    "K64F": {
+      "LED_PIN": "LED1",
+      "BUTTON_PIN": "BUTTON1"
     }
   }
 }

@@ -2,7 +2,7 @@
 
 #define DLM	"\r\n"
 
-MyDevice::MyDevice() : _Led(LED1, 0), _Button(USER_BUTTON)
+MyDevice::MyDevice() : _Led(MBED_CONF_APP_LED_PIN, 0), _Button(MBED_CONF_APP_BUTTON_PIN)
 {
 	_ButtonValue = false;
 	_PushCount = 0;
