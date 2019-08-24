@@ -22,6 +22,10 @@ int main()
 	nsapi_error_t status = eth.connect();
 	if (status != NSAPI_ERROR_OK) abort();
 	net = &eth;
+#elif defined TARGET_MTB_MXCHIP_EMW3166
+	net = NetworkInterface::get_default_instance();
+	if (net == NULL) abort();
+	if (net->connect() != NSAPI_ERROR_OK) abort();
 #else
 #error This target board not supported.
 #endif
@@ -41,6 +45,9 @@ int main()
 	printf("Setup AzureDeviceClient." DLM);
 	_defaultSystemNetwork = net;
 	MyDevice device;
+#if not defined NO_LOGGING
+	device.SetLogTrace(true);
+#endif
 	if (!device.ConnectIoTHub(MBED_CONF_APP_AZURE_IOTHUB_DEVICE_CONNECTION_STRING)) abort();
 
 	while (true)

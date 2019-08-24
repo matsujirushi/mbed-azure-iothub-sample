@@ -9,8 +9,7 @@
     }
   },
   "macros": [
-    "MBEDTLS_SHA1_C",
-    "NO_LOGGING"
+    "MBEDTLS_SHA1_C"
   ],
   "target_overrides": {
     "*": {
@@ -21,6 +20,13 @@
       "BUTTON_PIN": "BUTTON1"
     },
     "K64F": {
+      "LED_PIN": "LED1",
+      "BUTTON_PIN": "BUTTON1"
+    },
+    "MTB_MXCHIP_EMW3166": {
+      "nsapi.default-wifi-security": "WPA_WPA2",
+      "nsapi.default-wifi-ssid": "\"\"",
+      "nsapi.default-wifi-password": "\"\"",
       "LED_PIN": "LED1",
       "BUTTON_PIN": "BUTTON1"
     }
